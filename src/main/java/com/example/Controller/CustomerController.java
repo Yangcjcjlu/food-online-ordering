@@ -39,5 +39,11 @@ public class CustomerController {
     public String Customer(){
             return "login";
         }
+
+    @RequestMapping(value="/index")
+    public String index(){return  "index";}
+
+    @RequestMapping(value = "/checkout")
+    public String checkout(){return "checkout";}
     }
 
