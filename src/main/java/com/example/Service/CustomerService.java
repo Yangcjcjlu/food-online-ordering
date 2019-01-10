@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by ThinkPad on 2019/1/7.
  */
-@Service(value = "CustomerDao")
+@Service("CustomerDao")
 public class CustomerService implements CustomerDao{
 
     @Autowired

@@ -32,7 +32,7 @@
     ]]>
     </insert>
 
-    <select id="selectCustomer" resultType="com.example.Model.Customer">
+    <select id="selectCustomer" resultMap="mktBargainResult">
         SELECT
           *
         FROM

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/user")
 public class CustomerController {
 
     @Autowired
@@ -18,14 +17,14 @@ public class CustomerController {
 
     @ResponseBody
     @GetMapping("/select")
-    public Customer selectCustomer(Customer customer){
+    public void selectCustomer(Customer customer){
         List<Customer> customerList= customserService.selectCustomer(customer);
         for (Customer customer1:customerList
              ) {
-            System.out.print(customer1);
-            return customer1;
+            System.out.println(customer1.getName());
+
         }
-        return null;
+
     }
 
     @ResponseBody
@@ -33,5 +32,11 @@ public class CustomerController {
     public void insertCustomer(Customer customer){
          this.customserService.insertCustomer(customer);
     }
-}
+
+
+    @RequestMapping("/login")
+    public String Customer(){
+            return "login";
+        }
+    }
 
