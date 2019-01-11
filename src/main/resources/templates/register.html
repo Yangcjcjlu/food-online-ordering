@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Spicemystery a Hotel and Resturant Category Flat Bootstarp Responsive Website Template | Register ::
         w3layouts</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all">
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" media="all"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Spicemystery Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -15,11 +15,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
-    <script src="js/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen"/>
-    <script src="js/simpleCart.min.js"></script>
+    <link th:href='@{http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800}' rel='stylesheet' type='text/css'>
+    <link th:href='@{http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700}' rel='stylesheet' type='text/css'>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/flexslider.css}" type="text/css" media="screen"/>
+    <script th:src="@{/js/simpleCart.min.js}"></script>
+    <script type="text/javascript">
+        function login() {
+            $.ajax({
+                type:"POST",
+                dataType:"json",
+                url:"/insert",
+                data:$("#person_info").serialize(),
+                success:alert("good"),
+                async:true
+
+            })
+        }
+        </script>
 </head>
 <body>
 <!-- header -->
@@ -30,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <div class="container">
         <div class="logo">
-            <a href="index.html"><img src="images/logo.png" class="img-responsive" alt=""></a>
+            <a href="index.html"><img th:src="@{/images/logo.png}" class="img-responsive" alt=""></a>
         </div>
         <div class="header-left">
             <div class="head-nav">
@@ -57,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <a href="checkout.html">
                         <h3><span class="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity"
                                                                                class="simpleCart_quantity">0</span>
-                            items)<img src="images/bag.png" alt=""></h3>
+                            items)<img th:src="@{/images/bag.png}" alt=""></h3>
                     </a>
                     <p><a href="javascript:;" class="simpleCart_empty">empty card</a></p>
                     <div class="clearfix"></div>
@@ -73,20 +86,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="main-1">
     <div class="container">
         <div class="register">
-            <form>
+            <form action="" method="post" id="person_info">
                 <div class="register-top-grid">
                     <h3>PERSONAL INFORMATION</h3>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Name<label>*</label></span>
-                        <input type="text">
+                        <input type="text" id="name">
                     </div>
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>telephone number<label>*</label></span>
-                        <input type="text">
+                        <input type="text" id="telephone">
                     </div>
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Email Address<label>*</label></span>
-                        <input type="text">
+                        <input type="text" id="email">
                     </div>
                     <div class="clearfix"></div>
                     <a class="news-letter" href="#">
@@ -98,21 +111,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3>LOGIN INFORMATION</h3>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Password<label>*</label></span>
-                        <input type="password">
+                        <input type="password" id="password">
                     </div>
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Confirm Password<label>*</label></span>
                         <input type="password">
                     </div>
                 </div>
-            </form>
+
             <div class="clearfix"></div>
             <div class="register-but">
-                <form>
-                    <input type="submit" value="submit">
+
+                    <button onclick="login()" id="submit" value="submit"/>
                     <div class="clearfix"></div>
-                </form>
+
             </div>
+            </form>
         </div>
     </div>
 </div>

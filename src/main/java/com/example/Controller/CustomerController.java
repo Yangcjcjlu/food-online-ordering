@@ -5,6 +5,7 @@ import com.example.Model.Customer;
 import com.example.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,8 @@ public class CustomerController {
     @PostMapping("/insert")
     public void insertCustomer(Customer customer) {
         this.customserService.insertCustomer(customer);
+
+
     }
 
 
