@@ -20,6 +20,7 @@ spring:
           #一个连接在池中最小生存的时间
     thymeleaf:
         prefix: classpath:/templates/
+        encoding: UTF-8
     mvc:
       view:
        prefix: /

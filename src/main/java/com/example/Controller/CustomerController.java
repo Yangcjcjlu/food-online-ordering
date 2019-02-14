@@ -5,7 +5,6 @@ import com.example.Model.Customer;
 import com.example.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,10 +29,22 @@ public class CustomerController {
     }
 
     @ResponseBody
-    @PostMapping("/insert")
+    @RequestMapping("/insert")
     public void insertCustomer(Customer customer) {
+        System.out.println("good");
+        System.out.println(customer.getName());
         this.customserService.insertCustomer(customer);
 
+
+    }
+
+    @RequestMapping("/update")
+    public  void updateCustomer(Customer customer){
+
+    }
+
+    @RequestMapping("/delete")
+    public  void deleteCustomer(){
 
     }
 

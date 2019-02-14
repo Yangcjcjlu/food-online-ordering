@@ -25,10 +25,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $.ajax({
                 type:"POST",
                 dataType:"json",
-                url:"/insert",
+                url:"/user/insert",
                 data:$("#person_info").serialize(),
                 success:alert("good"),
-                async:true
+                async:false,
 
             })
         }
@@ -86,20 +86,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="main-1">
     <div class="container">
         <div class="register">
-            <form action="" method="post" id="person_info">
+            <form action="/user/insert" method="post" id="person_info">
                 <div class="register-top-grid">
                     <h3>PERSONAL INFORMATION</h3>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Name<label>*</label></span>
-                        <input type="text" id="name">
+                        <input type="text" name="name",id="name">
                     </div>
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>telephone number<label>*</label></span>
-                        <input type="text" id="telephone">
+                        <input type="text" name="telephone",id="telephone">
                     </div>
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Email Address<label>*</label></span>
-                        <input type="text" id="email">
+                        <input type="text" name="email",id="email">
                     </div>
                     <div class="clearfix"></div>
                     <a class="news-letter" href="#">
@@ -111,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3>LOGIN INFORMATION</h3>
                     <div class="wow fadeInLeft" data-wow-delay="0.4s">
                         <span>Password<label>*</label></span>
-                        <input type="password" id="password">
+                        <input type="password" name="password",id="password">
                     </div>
                     <div class="wow fadeInRight" data-wow-delay="0.4s">
                         <span>Confirm Password<label>*</label></span>
@@ -121,8 +121,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="clearfix"></div>
             <div class="register-but">
+                <input type="submit" value="提交"/>
 
-                    <button onclick="login()" id="submit" value="submit"/>
+                    <!--<button onclick="login()" id="submit" value="submit"/>-->
                     <div class="clearfix"></div>
 
             </div>
