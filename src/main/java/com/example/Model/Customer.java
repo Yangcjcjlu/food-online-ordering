@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Customer implements Serializable{
     private Integer id;
 
-    private String Name;
+    private String name;
 
     private String password;
 
@@ -23,11 +23,11 @@ public class Customer implements Serializable{
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getPassword() {

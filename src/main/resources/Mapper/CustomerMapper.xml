@@ -3,7 +3,7 @@
 <mapper namespace="com.example.Dao.CustomerDao" >
 
 
-    <resultMap id="mktBargainResult" type="com.example.Model.Customer">
+    <resultMap id="CustomerResult" type="com.example.Model.Customer">
 
         <result property="id" column="c_id"/>
         <result property="name" column="c_logname"/>
@@ -32,11 +32,26 @@
     ]]>
     </insert>
 
-    <select id="selectCustomer" resultMap="mktBargainResult">
+    <select id="get" resultMap="CustomerResult" parameterType="string">
+        SELECT * FROM customer c
+        <where>
+            c.data_status =1
+            <if test="name!=null and name!=''">
+               and c.c_logname =#{name}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectCustomer" resultMap="CustomerResult">
         SELECT
           *
         FROM
-         customer
+         `customer` c
+        <where>
+         <if test="name!=null and name!=''">
+             c.c_logname = #{name}
+         </if>
+        </where>
     </select>
 
 

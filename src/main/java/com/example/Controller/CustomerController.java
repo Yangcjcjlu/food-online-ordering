@@ -3,14 +3,17 @@ package com.example.Controller;
 
 import com.example.Model.Customer;
 import com.example.Service.CustomerService;
+import com.example.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("")
 public class CustomerController {
 
     @Autowired
@@ -20,10 +23,8 @@ public class CustomerController {
     @RequestMapping("/select")
     public String selectCustomer(Customer customer) {
         List<Customer> customerList = customserService.selectCustomer(customer);
-        for (Customer customer1 : customerList
-                ) {
+        for (Customer customer1 : customerList) {
             System.out.println(customer1.getName());
-
         }
         return "login";
     }
@@ -34,9 +35,8 @@ public class CustomerController {
         System.out.println("good");
         System.out.println(customer.getName());
         this.customserService.insertCustomer(customer);
-
-
     }
+
 
     @RequestMapping("/update")
     public  void updateCustomer(Customer customer){
@@ -48,10 +48,21 @@ public class CustomerController {
 
     }
 
-
-    @RequestMapping(value = "/login")
-    public String Customer() {
+    @RequestMapping(value =  "/login")
+    public String login(){
         return "login";
+    }
+
+
+   // @RequestMapping(value = "/login")
+    public String login(@RequestParam("name") String name, @RequestParam("password") String password, Model model, HttpSession session) {
+        Customer customer = customserService.get(name);
+        if(customer==null){
+            model.addAttribute("msg","账号密码错误");
+            return "login";
+        }
+        session.setAttribute("customer",customer);
+        return "redirect:index";
     }
 
     @RequestMapping(value = "/index")
@@ -81,7 +92,9 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/register")
-    public String register() {
+    public String register(Model model,Customer customer)
+    {
+
         return "register";
     }
 

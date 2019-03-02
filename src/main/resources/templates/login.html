@@ -14,7 +14,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     }, false);
     function hideURLbar() {
         window.scrollTo(0, 1);
-    } </script>
+    }
+    function doSubmit(){
+        var name = $('#name');
+        var password = $("#password");
+        $.ajax({
+            type:"POST",
+            dataType:"json",
+            url:basePath+'/fore/foreLogin',
+            data: {
+                "name":name,
+                "password":password
+            }
+        })
+    }
+
+    </script>
     <link th:href='@{http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800}' rel='stylesheet' type='text/css'>
     <link th:href='@{http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700}' rel='stylesheet' type='text/css'>
     <script th:src="@{/js/jquery.min.js}"></script>
@@ -37,9 +52,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <span class="menu"> </span>
                 <ul>
                     <li><a href="index">Home</a></li>
-                    <li><a href=" resturants.html">Resturants</a></li>
+                    <li><a href=" resturants">Resturants</a></li>
                     <li class="active"><a href=" login">Sign In</a></li>
-                    <li><a href=" contact.html">Contact</a></li>
+                    <li><a href=" contact">Contact</a></li>
                     <div class="clearfix"></div>
                 </ul>
                 <!-- script-for-nav -->
@@ -79,22 +94,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     checkout process faster, store multiple shipping addresses, view and track your orders in your
                     account and more.if you are merchants and want to join us，you can also create an account and add
                     your restaurant's information.</p>
-                <a class="acount-btn" href="register.html">Create an Account</a>
+                <a class="acount-btn" th:href="@{register}">Create an Account</a>
             </div>
             <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
                 <h3>REGISTERED CUSTOMERS</h3>
                 <p>If you have an account with us, please log in.</p>
                 <form>
                     <div>
-                        <span>Email Address<label>*</label></span>
-                        <input type="text">
+                        <span>LoginName<label>*</label></span>
+                        <input type="text" id="name">
                     </div>
                     <div>
                         <span>Password<label>*</label></span>
-                        <input type="password">
+                        <input type="password" id="password">
                     </div>
                     <a class="forgot" href="#">Forgot Your Password?</a>
-                    <input type="submit" value="Login">
+                    <input type="submit" value="Login" onclick="doSubmit()">
                 </form>
             </div>
             <div class="clearfix"></div>
