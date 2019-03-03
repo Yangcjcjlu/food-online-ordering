@@ -23,7 +23,8 @@ public class CustomerService implements CustomerDao{
     }
 
     @Override
-    public void   delete(int id){ customerDao.delete(id);}
+    public void delete(int id){ customerDao.delete(id);}
+
 
     @Override
     public void update(Customer customer){

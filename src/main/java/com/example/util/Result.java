@@ -17,11 +17,12 @@ public class Result {
         this.data = data;
     }
 
-    public static Result success() {
-        return new Result(SUCCESS_CODE,null,null);
+    public static Result success(){return new Result(SUCCESS_CODE,null,null);}
+    public static Result success(String message) {
+        return new Result(SUCCESS_CODE,message,null);
     }
     public static Result success(Object data) {
-        return new Result(SUCCESS_CODE,"",data);
+        return new Result(SUCCESS_CODE,null,data);
     }
     public static Result fail(String message) {
         return new Result(FAIL_CODE,message,null);

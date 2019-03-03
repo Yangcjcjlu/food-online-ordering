@@ -9,15 +9,21 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Spicemystery Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <span th:include="basepath::html"></span>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/simpleCart.min.js}"></script>
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
     function hideURLbar() {
         window.scrollTo(0, 1);
     }
+    </script>
+    <script type="text/javascript">
     function doSubmit(){
-        var name = $('#name');
-        var password = $("#password");
+        var name = $('#name').val();
+        console.log(name);
+        var password = $("#password").val();
         $.ajax({
             type:"POST",
             dataType:"json",
@@ -25,6 +31,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             data: {
                 "name":name,
                 "password":password
+            },
+            success:function (data) {
+                if(data.code==0){
+                    alert(data.message);
+                    window.location.href='index'
+                }
+                else{
+                alert (data.message);
+                location.reload();}
+
             }
         })
     }
@@ -32,9 +48,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <link th:href='@{http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800}' rel='stylesheet' type='text/css'>
     <link th:href='@{http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700}' rel='stylesheet' type='text/css'>
-    <script th:src="@{/js/jquery.min.js}"></script>
-    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen"/>
-    <script th:src="@{/js/simpleCart.min.js}"></script>
+
 </head>
 <body>
 <!-- header -->
@@ -99,7 +113,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
                 <h3>REGISTERED CUSTOMERS</h3>
                 <p>If you have an account with us, please log in.</p>
-                <form>
                     <div>
                         <span>LoginName<label>*</label></span>
                         <input type="text" id="name">
@@ -109,8 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <input type="password" id="password">
                     </div>
                     <a class="forgot" href="#">Forgot Your Password?</a>
-                    <input type="submit" value="Login" onclick="doSubmit()">
-                </form>
+                    <input type="submit" value="Login" onclick="doSubmit()"/>
             </div>
             <div class="clearfix"></div>
         </div>

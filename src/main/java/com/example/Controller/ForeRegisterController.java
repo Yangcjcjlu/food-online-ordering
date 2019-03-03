@@ -3,11 +3,9 @@ package com.example.Controller;
 import com.example.Model.Customer;
 import com.example.Service.CustomerService;
 import com.example.util.Result;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * Created by ThinkPad on 2019/2/27.
@@ -39,10 +37,26 @@ public class ForeRegisterController {
         return Result.success();
     }
 
+    @RequestMapping("/foreLogin")
+    @ResponseBody
     public Object login(@RequestParam("name") String name,@RequestParam("password") String password){
         Customer customer = new Customer();
         customer.setName(name);
         customer.setPassword(password);
-        return null;
+        Customer customer1 ;
+        customer1=customerService.get(name);
+        if(customer1==null)
+        {
+            String message = "There is no such people!";
+            return Result.fail(message);
+        }
+        else if(!customer1.getPassword().toString().equals(password)){
+            String message ="The password is incorrect,please check it out!";
+            return Result.fail(message);
+        }
+        else{
+            String message = "congratulation!";
+            return Result.success(message);
+        }
     }
 }
