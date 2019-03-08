@@ -1,11 +1,16 @@
 package com.example.Controller;
 
+import com.example.Dao.MerchantDao;
 import com.example.Model.Customer;
+import com.example.Model.Merchant;
 import com.example.Service.CustomerService;
+import com.example.Service.MerchantService;
 import com.example.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by ThinkPad on 2019/2/27.
@@ -15,6 +20,9 @@ import org.springframework.web.bind.annotation.*;
 public class ForeRegisterController {
     @Autowired
     CustomerService customerService;
+
+    @Autowired
+    MerchantService merchantService;
 
     @RequestMapping("/foreRegister")
     @ResponseBody
@@ -39,7 +47,7 @@ public class ForeRegisterController {
 
     @RequestMapping("/foreLogin")
     @ResponseBody
-    public Object login(@RequestParam("name") String name,@RequestParam("password") String password){
+    public Object login(@RequestParam("name") String name, @RequestParam("password") String password, HttpSession session){
         Customer customer = new Customer();
         customer.setName(name);
         customer.setPassword(password);
@@ -56,7 +64,61 @@ public class ForeRegisterController {
         }
         else{
             String message = "congratulation!";
+            session.setAttribute("user",name);
             return Result.success(message);
         }
+    }
+
+
+    @RequestMapping("/MerchantRegister1")
+    @ResponseBody
+    public Object MerchantRegister1(@RequestParam("name") String name,@RequestParam("password") String password,@RequestParam("tel") String tel,
+                                    @RequestParam("address") String address){
+        String message;
+        if(this.merchantService.MerchantIsExist(name)){
+            message = "The Merchant has already existed! Please change another name";
+            return Result.fail(message);
+        }
+        Merchant merchant = new Merchant();
+        merchant.setAddress(address);
+        merchant.setName(name);
+        merchant.setPassword(password);
+        merchant.setStatus(1);
+        merchant.setTel(tel);
+        merchantService.MerchantInsert(merchant);
+        return Result.success();
+
+    }
+
+    @RequestMapping("/MerchantRegister")
+    @ResponseBody
+    public Object MerchantRegister(@RequestBody Merchant merchant){
+        String message;
+        if(this.merchantService.MerchantIsExist(merchant.getName())){
+            message = "The Merchant has already existed! Please change another name";
+            return Result.fail(message);
+        }
+
+        merchantService.MerchantInsert(merchant);
+        return Result.success();
+
+    }
+
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @ResponseBody
+    public Object MerchantLogin(@RequestBody Merchant merchant,HttpSession session){
+        String message;
+        Merchant merchant1 = this.merchantService.MerchantGet(merchant.getName());
+        if(merchant1==null){
+            message = "There is no such people";
+            return Result.fail(message);
+        }
+        if(merchant1.getPassword()!=merchant.getPassword()){
+            message = "Password is InCorrect,please try again";
+            return Result.fail(message);
+        }
+        session.setAttribute("user",merchant.getName());
+        return Result.success();
+
     }
 }

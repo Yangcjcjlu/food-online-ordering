@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.Dao.ReviewDao" >
+
+
+    <resultMap id="ReviewResult" type="com.example.Model.Review">
+
+        <result property="id" column="d_id"/>
+        <result property="name" column="d_name"/>
+        <result property="status" column="d_status"/>
+        <result property="price" column="d_price"/>
+        <result property="des" column="d_des"/>
+    </resultMap>
+
+
+
+    <insert id="ReviewInsert" parameterType="com.example.Model.Review">
+        <![CDATA[
+        INSERT INTO `dish` (
+            `d_name`,
+            `d_status`,
+            `d_price`,
+            `d_des`
+        )
+        VALUES(
+          #{name},
+          #{status},
+          #{price},
+          #{des}
+        )
+    ]]>
+    </insert>
+
+
+
+
+
+
+</mapper>

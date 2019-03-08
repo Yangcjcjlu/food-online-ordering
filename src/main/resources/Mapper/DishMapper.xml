@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.Dao.DishDao" >
+
+
+    <resultMap id="DishResult" type="com.example.Model.Dish">
+
+        <result property="id" column="d_id"/>
+        <result property="name" column="d_name"/>
+        <result property="status" column="d_status"/>
+        <result property="price" column="d_price"/>
+        <result property="des" column="d_des"/>
+    </resultMap>
+
+
+
+    <insert id="DishInsert" parameterType="com.example.Model.Dish">
+        <![CDATA[
+        INSERT INTO `dish` (
+            `d_name`,
+            `d_status`,
+            `d_price`,
+            `d_des`
+        )
+        VALUES(
+          #{name},
+          #{status},
+          #{price},
+          #{des}
+        )
+    ]]>
+    </insert>
+
+    <select id="DishList" resultMap="DishResult" resultType="com.example.Model.Dish">
+        SELECT * from dish d
+    </select>
+
+
+    <select id="DishGet" resultMap="DishResult" parameterType="string">
+        SELECT * FROM dish d
+        <where>
+            d.data_status =1
+            <if test="name!=null and name!=''">
+               and d.d_name =#{name}
+            </if>
+        </where>
+    </select>
+    
+    <update id="DishUpdate" parameterType="com.example.Model.Dish">
+         UPDATE dish d
+         set
+           <trim suffixOverrides=",">
+               <if test="id!=null and id!=''">d_id = #{id} </if>
+               <if test="name!=null and name!=''">d_name = #{name}</if>
+               <if test="status!=null and status!=''">d_status = #{status}</if>
+               <if test="price!=null and price!=''">d_price = #{price}</if>
+               <if test="des!=null and des!=''">d_des = #{des}</if>
+           </trim>
+    </update>
+
+    <update id="DishDelete" parameterType="com.example.Model.Dish">
+        UPDATE dish d
+           d.data_status =0
+        where
+           d.d_id = #{id}
+    </update>
+
+
+
+
+
+</mapper>

@@ -60,6 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 type: "POST",
                 dataType: "json",
                 url: basePath+'/fore/foreRegister',
+                async:false,
                 data: {
                     "name":csName,
                     "email":email,
@@ -71,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         alert(data.message);
                     }
                     else {
-                        alert("congratulation!!")
+                        alert("congratulation!Welcome"+csName)
                         window.location.href = 'index';
                     }
                 }
@@ -90,16 +91,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <div class="container">
         <div class="logo">
-            <a href="index.html"><img th:src="@{/images/logo.png}" class="img-responsive" alt=""></a>
+            <a href="index"><img th:src="@{/images/logo.png}" class="img-responsive" alt=""></a>
         </div>
         <div class="header-left">
             <div class="head-nav">
                 <span class="menu"> </span>
                 <ul>
-                    <li><a th:href="@{index.html}">Home</a></li>
-                    <li><a th:href="@{ resturants.html}">Resturants</a></li>
-                    <li><a th:href="@{ login.html}">Sign In</a></li>
-                    <li><a th:href=" @{contact.html}">Contact</a></li>
+                    <li><a th:href="@{index}">Home</a></li>
+                    <li><a th:href="@{ resturants}">Resturants</a></li>
+                    <li><a th:href="@{ login}">Sign In</a></li>
+                    <li><a th:href=" @{contact}">Contact</a></li>
                     <div class="clearfix"></div>
                 </ul>
                 <!-- script-for-nav -->
@@ -114,7 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="header-right1">
                 <div class="cart box_1">
-                    <a href="checkout.html">
+                    <a href="checkout">
                         <h3><span class="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity"
                                                                                class="simpleCart_quantity">0</span>
                             items)<img th:src="@{/images/bag.png}" alt=""></h3>

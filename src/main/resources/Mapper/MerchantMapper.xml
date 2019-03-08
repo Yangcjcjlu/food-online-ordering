@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.Dao.MerchantDao" >
+
+
+    <resultMap id="MerchantResult" type="com.example.Model.Merchant">
+
+        <result property="id" column="m_id"/>
+        <result property="name" column="m_name"/>
+        <result property="status" column="m_status"/>
+        <result property="password" column="m_password"/>
+        <result property="tel" column="m_tel"/>
+        <result property="comment" column="m_comment"/>
+    </resultMap>
+
+
+
+    <insert id="MerchantInsert" parameterType="com.example.Model.Merchant">
+        <![CDATA[
+        INSERT INTO `merchant` (
+            `m_name`,
+            `m_password`,
+            `m_tel`,
+            `m_address`,
+            `m_comment`,
+            `m_status`
+        )
+        VALUES(
+          #{name},
+          #{password},
+          #{tel},
+          #{address},
+          #{comment},
+          #{status}
+        )
+    ]]>
+    </insert>
+
+    <select id="MerchantList" resultMap="MerchantResult" resultType="com.example.Model.Merchant">
+        SELECT * from merchant m
+    </select>
+
+
+    <select id="MerchantGet" resultMap="MerchantResult" parameterType="string">
+        SELECT * FROM merchant m
+        <where>
+            m.data_status =1
+            <if test="name!=null and name!=''">
+               and m.m_name =#{name}
+            </if>
+        </where>
+    </select>
+    
+    <update id="MerchantUpdate" parameterType="com.example.Model.Merchant">
+         UPDATE merchant m
+         set
+           <trim suffixOverrides=",">
+               <if test="id!=null and id!=''">m_id = #{id} </if>
+               <if test="name!=null and name!=''">m_name = #{name}</if>
+               <if test="status!=null and status!=''">m_status = #{status}</if>
+               <if test="password!=null and password!=''">m_password = #{password}</if>
+               <if test="tel!=null and tel!=''">m_tel = #{tel}</if>
+               <if test="comment!=null and comment!=''">m_comment = #{comment}</if>
+               <if test="address!=null and address!=''">m_address = #{address}</if>
+           </trim>
+    </update>
+
+    <update id="MerchantDelete" parameterType="com.example.Model.Merchant">
+        UPDATE Merchant m
+           m.data_status =0
+        where
+           m.m_id = #{id}
+    </update>
+
+
+
+
+
+</mapper>

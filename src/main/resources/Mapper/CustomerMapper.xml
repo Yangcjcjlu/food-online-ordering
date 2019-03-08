@@ -42,7 +42,7 @@
         </where>
     </select>
 
-    <select id="selectCustomer" resultMap="CustomerResult">
+    <select id="selectCustomer" resultMap="CustomerResult" resultType="com.example.Model.Customer">
         SELECT
           *
         FROM
