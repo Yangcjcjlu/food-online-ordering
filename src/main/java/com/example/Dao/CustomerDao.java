@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * Created by ThinkPad on 2019/1/6.
+ * Created by ThinkPad on 2019/1/6.--
  */
 
 public interface CustomerDao {
