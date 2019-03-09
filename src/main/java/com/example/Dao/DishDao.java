@@ -18,4 +18,6 @@ public interface DishDao {
     void DishUpdate(Dish dish);
 
     void DishInsert(Dish dish);
+
+    boolean isExist(Dish dish);
 }

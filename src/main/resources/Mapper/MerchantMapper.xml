@@ -13,6 +13,14 @@
         <result property="comment" column="m_comment"/>
     </resultMap>
 
+    <sql id="MerchantJoinMap">
+        ,m.m_id as m_id
+        ,m.m_name as m_name
+        ,m.m_tel as m_tel
+        ,m.m_address as m_address
+        ,m.m_comment as m_comment
+        ,m.m_status as m_status
+    </sql>
 
 
     <insert id="MerchantInsert" parameterType="com.example.Model.Merchant">

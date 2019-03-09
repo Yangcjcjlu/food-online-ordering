@@ -121,4 +121,22 @@ public class ForeRegisterController {
         return Result.success();
 
     }
+
+    @GetMapping("forechecklogin ")
+    public Object checkLogin(HttpSession session){
+        String message;
+        Customer customer = (Customer) session.getAttribute("name");
+        if(null!=customer){
+            message="success!";
+            return Result.success(message);
+        }
+        message="please login in !";
+        return Result.fail(message);
+    }
+
+    @GetMapping("foreLoginOut")
+    public String logout(HttpSession session){
+        session.removeAttribute("customer");
+        return "redirect:index";
+    }
 }

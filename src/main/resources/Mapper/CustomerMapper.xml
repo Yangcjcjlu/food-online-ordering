@@ -12,6 +12,13 @@
         <result property="address" column="c_address"/>
     </resultMap>
 
+    <sql id="CustomerJoinMap">
+        ,c.c_id as c_id
+        ,c.c_logname as c_logname
+        ,c.c_tel as c_tel
+        ,c.c_address as c_address
+    </sql>
+
     <insert id="insertCustomer" parameterType="com.example.Model.Customer">
         <![CDATA[
         INSERT INTO `customer` (
