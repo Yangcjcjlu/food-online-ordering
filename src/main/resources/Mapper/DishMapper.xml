@@ -10,7 +10,17 @@
         <result property="status" column="d_status"/>
         <result property="price" column="d_price"/>
         <result property="des" column="d_des"/>
+        <result property="saleCount" column="d_sales_count"/>
+        <result property="createTime" column="create_time"/>
     </resultMap>
+
+    <sql id="DishJoinMap">
+        ,d.d_id as d_id
+        ,d.d_name as d_name
+        ,d.d_pic as d_pic
+        ,d.d_status as d_status
+        ,d.d_des as d_des
+    </sql>
 
 
 

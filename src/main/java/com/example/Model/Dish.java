@@ -1,6 +1,7 @@
 package com.example.Model;
 
 import javax.persistence.Column;
+import java.util.Date;
 
 /**
  * Created by ThinkPad on 2019/3/8.
@@ -15,6 +16,27 @@ public class Dish {
     private double price;
 
     private String des;
+
+    private Integer saleCount;
+
+    private Date  createTime;
+
+
+    public Integer getSaleCount() {
+        return saleCount;
+    }
+
+    public void setSaleCount(Integer saleCount) {
+        this.saleCount = saleCount;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     public int getId() {
         return id;
