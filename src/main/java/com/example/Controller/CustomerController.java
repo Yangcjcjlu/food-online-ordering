@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-
+//This is a test
 @Controller
 @RequestMapping("")
 public class CustomerController {
