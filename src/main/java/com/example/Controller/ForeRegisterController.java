@@ -2,8 +2,10 @@ package com.example.Controller;
 
 import com.example.Dao.MerchantDao;
 import com.example.Model.Customer;
+import com.example.Model.Dish;
 import com.example.Model.Merchant;
 import com.example.Service.CustomerService;
+import com.example.Service.DishService;
 import com.example.Service.MerchantService;
 import com.example.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class ForeRegisterController {
 
     @Autowired
     MerchantService merchantService;
+
+    @Autowired
+    DishService dishService;
 
     @RequestMapping("/foreRegister")
     @ResponseBody
@@ -138,5 +143,18 @@ public class ForeRegisterController {
     public String logout(HttpSession session){
         session.removeAttribute("customer");
         return "redirect:index";
+    }
+
+    @GetMapping("foreBuyOne")
+    public Object buyone(int did,int num,HttpSession session){
+        return buyoneAndAddCart(did,num,session);
+    }
+
+    private int buyoneAndAddCart(int did,int num,HttpSession session){
+        Dish dish = this.dishService.DishGet(did);
+        int ooid=0;
+        Customer customer = (Customer) session.getAttribute("customer");
+        boolean found = false;
+        return ooid;
     }
 }

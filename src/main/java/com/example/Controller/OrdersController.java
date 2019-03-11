@@ -48,4 +48,10 @@ public class OrdersController {
         this.orderService.OrderUpdate(order);
         return Result.success();
     }
+
+    @RequestMapping("foreSearch")
+    @ResponseBody
+    public Object search(String keyword){
+        return null;
+    }
 }

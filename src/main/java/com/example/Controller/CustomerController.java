@@ -29,6 +29,12 @@ public class CustomerController {
         return "login";
     }
 
+
+    @RequestMapping(value="/registerSuccess")
+    public String registerSuccess(){
+        return "registerSuccess";
+    }
+
     @ResponseBody
     @RequestMapping("/insert")
     public void insertCustomer(Customer customer) {
@@ -98,6 +104,12 @@ public class CustomerController {
         return "register";
     }
 
+    @RequestMapping(value = "/test")
+    public String test(){
+        return "test";
+    }
+
+
     @RequestMapping(value = "/resturants")
     public String resturants() {
         return "resturants";
@@ -107,4 +119,7 @@ public class CustomerController {
     public String userInfo() {
         return "Userinformation";
     }
+
+    @RequestMapping(value = "/customerList")
+    public String customerList(){ return  "CustomerList";}
 }

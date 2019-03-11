@@ -16,6 +16,10 @@ div.editDiv{
 	
 }
 
+div.listDataTableDiv{
+	min-height:220px;
+}
+
 table.addTable{
 	width:100%;
 }
