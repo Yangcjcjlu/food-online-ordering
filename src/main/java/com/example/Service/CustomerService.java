@@ -45,6 +45,10 @@ public class CustomerService implements CustomerDao{
         return true;
     }
 
+    public List<Customer> CustomerList(){
+        return customerDao.CustomerList();
+    }
+
 
     @Override
     public List<Customer> selectCustomer(Customer customer) {

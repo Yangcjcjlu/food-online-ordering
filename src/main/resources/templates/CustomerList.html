@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery/2.0.0/jquery.min.js"></script>
     <script src="vue/2.5.16/vue.min.js"></script>
     <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,7 @@
                 </tr>
             </tread>
                 <tbody>
-                    <tr v-for ="customer in customers">
+                    <tr v-for ="customer in Customers">
                         <td>{{customer.id}}</td>
                         <td>Customer Image</td>
                         <td>{{customer.name}}</td>
@@ -54,8 +54,8 @@
                             <button @click="edit(customer)">edit</button>
                         </td>
                         <td>
+                            <a @click="deleteDish(customer.id)">delete</a>
                             <span class="glyphicon glyphicon-trash"></span>
-                            <button @click="deleteCustomer(customer.id)">delete</button>
                         </td>
                     </tr>
                 <!--<tr>-->
@@ -88,36 +88,71 @@
         <!--</div>-->
     </div>
     <script type="text/javascript">
-        $("update").hide();
-
-        var data = {
-            customers:[
-                {name:'a',tel:'a',address:'a'},
-                {name:'b',tel:'b',address:'b'},
-                {name:'c',tel:'c',address:'c'},
-                {name:'d',tel:'d',address:'d'},
-                {name:'e',tel:'e',address:'e'},
-            ],
-            customer:{
-                name:'test',tel:'1212',address:'12'
-            }
-        };
-
-        var vue = new Vue({
-            el:'#app',
-            data:data,
-            methods:{
-                add:function (event) {
-
+        $(function () {
+            var data = {
+                uri:'ListCustomer',
+                Customers:[]
+            };
+            var vue = new Vue({
+                el:'#app',
+                data:data,
+                mounted:function () {
+                    this.list();
                 },
-                update:function () {
-                    
-                },
-                cancel:function () {
-                    
+                methods:{
+                    list:function () {
+                      var url = this.uri;
+                      axios.get(url).then(function (response) {
+                          console.log(response);
+                         vue.Customers = response.data;
+                      });
+                    },
+                    deleteDish:function (id){
+                        if(!checkDeleteLink)
+                            return
+                    var url = 'CustomerDelete'+"/"+id;
+                        axios.get(url).then(function(response){
+                            location.reload();
+                        })
+                    },
+                    edit:function () {
+                        
+                    },
+                    add:function (event) {
+
+                    },
+                    update:function () {
+
+                    },
+                    cancel:function () {
+
+                    }
                 }
+            })
+            function checkDeleteLink(){
+                var confirmDelete = confirm("Confirm to delete");
+                if(confirmDelete)
+                    return true;
+                return false;
             }
+
         })
+
+
+//        var data = {
+//            customers:[
+//                {name:'a',tel:'a',address:'a'},
+//                {name:'b',tel:'b',address:'b'},
+//                {name:'c',tel:'c',address:'c'},
+//                {name:'d',tel:'d',address:'d'},
+//                {name:'e',tel:'e',address:'e'},
+//            ],
+//            customer:{
+//                name:'test',tel:'1212',address:'12'
+//            }
+//        };
+
+
     </script>
 </body>
 </html>

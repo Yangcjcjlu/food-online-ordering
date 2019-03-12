@@ -122,4 +122,17 @@ public class CustomerController {
 
     @RequestMapping(value = "/customerList")
     public String customerList(){ return  "CustomerList";}
+
+    @RequestMapping("ListCustomer")
+    @ResponseBody
+    public List<Customer> customersList(){
+        return this.customserService.CustomerList();
+    }
+
+    @RequestMapping("/CustomerDelete/{id}")
+    @ResponseBody
+    public Object CustomerDelete(@PathVariable("id") int id){
+        this.customserService.delete(id);
+        return Result.success();
+    }
 }

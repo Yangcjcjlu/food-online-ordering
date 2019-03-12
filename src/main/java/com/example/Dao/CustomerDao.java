@@ -14,13 +14,15 @@ public interface CustomerDao {
 
     void insertCustomer(Customer customer);
 
+    List<Customer> CustomerList();
+
     List<Customer> selectCustomer(Customer customer);
 
-    void delete(int id);
+    void delete(@Param("id") int id);
 
     void update(Customer customer);
 
-    Customer get( int id);
+    Customer get(int id);
 
     Customer get(@Param("name") String name);
 

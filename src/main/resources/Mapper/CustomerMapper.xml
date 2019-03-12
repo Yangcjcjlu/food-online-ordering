@@ -39,6 +39,17 @@
     ]]>
     </insert>
 
+    <update id="delete" parameterType="com.example.Model.Customer">
+        update `customer`
+        set
+            data_status = 0
+            WHERE 
+              <if test="id!=null and id!=''">
+                  c_id = #{id}
+              </if>
+    </update>
+
+
     <select id="get" resultMap="CustomerResult" parameterType="string">
         SELECT * FROM customer c
         <where>
@@ -48,6 +59,16 @@
             </if>
         </where>
     </select>
+
+    <select id="CustomerList" resultMap="CustomerResult" resultType="com.example.Model.Customer">
+        SELECT
+         *
+         FROM
+          `customer` c
+          WHERE
+              c.data_status = 1
+    </select>
+
 
     <select id="selectCustomer" resultMap="CustomerResult" resultType="com.example.Model.Customer">
         SELECT
