@@ -21,6 +21,8 @@ public class DishService implements DishDao {
         return this.dishDao.DishGet(id);
     }
 
+    public List<Dish> DishList(int mid){return this.dishDao.DishList(mid);}
+
     @Override
     public List<Dish> DishList() {
         return this.dishDao.DishList();

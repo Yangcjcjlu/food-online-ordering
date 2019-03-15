@@ -135,4 +135,9 @@ public class CustomerController {
         this.customserService.delete(id);
         return Result.success();
     }
+
+    @RequestMapping("/DynamicDish")
+    public String DynamicDish(){
+        return "DynamicDish";
+    }
 }

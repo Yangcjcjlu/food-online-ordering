@@ -1,0 +1,20 @@
+<div th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="productDetailDiv" v-show="showDetail">
+        <a href="#nowhere" class="productDetailTopPartSelectedLink  selected">Dish Detail</a>
+        <a href="#nowhere" class="productDetailTopReviewLink" @click.native="toggle2Review">Comment
+        <span class="productDetailTopReviewLinkNumber">{{dish.comment}}</span></a>
+    </div>
+
+    <div class="productParamterPart">
+        <div class="productParamter">DishParameter:</div>
+        <div class="productParamterList">
+            <span >
+            </span>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+    <div class="productDetailImagesPart">
+        <img src="">
+    </div>
+</div>

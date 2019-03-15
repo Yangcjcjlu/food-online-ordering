@@ -23,6 +23,9 @@ public class DishController {
     @Autowired
     private DishService dishService;
 
+
+
+
     @RequestMapping("/add")
     @ResponseBody
     public Object addDish(@RequestBody Dish dish){
@@ -31,10 +34,10 @@ public class DishController {
         return Result.success();
     }
 
-    @RequestMapping("/list")
+    @RequestMapping("/list/{mid}")
     @ResponseBody
-    public List<Dish> listDish(){
-        return this.dishService.DishList();
+    public List<Dish> listDish(@PathVariable("mid") int mid){
+        return this.dishService.DishList(mid);
     }
 
     @RequestMapping("/update")

@@ -21,6 +21,15 @@ public class Dish {
 
     private Date  createTime;
 
+    private int cid;
+
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
 
     public Integer getSaleCount() {
         return saleCount;
@@ -78,14 +87,13 @@ public class Dish {
         this.des = des;
     }
 
-    public int getM_id() {
-        return m_id;
+    private int mid;
+
+    public int getMid() {
+        return mid;
     }
 
-    public void setM_id(int m_id) {
-        this.m_id = m_id;
+    public void setMid(int mid) {
+        this.mid = mid;
     }
-
-    private int m_id;
-
 }

@@ -12,6 +12,8 @@
         <result property="des" column="d_des"/>
         <result property="saleCount" column="d_sales_count"/>
         <result property="createTime" column="create_time"/>
+        <result property="mid" column="m_id"/>
+        <result property="cid" column="cid"/>
     </resultMap>
 
     <sql id="DishJoinMap">
@@ -43,6 +45,11 @@
 
     <select id="DishList" resultMap="DishResult" resultType="com.example.Model.Dish">
         SELECT * from dish d
+        WHERE
+           d.data_status =1
+           <if test="mid!=null and mid!=''">
+               and d.m_id=#{mid}
+           </if>
     </select>
 
 
