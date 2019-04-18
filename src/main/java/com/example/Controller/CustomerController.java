@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-//This is a test
+
 @Controller
 @RequestMapping("")
 public class CustomerController {
@@ -134,6 +134,13 @@ public class CustomerController {
     @ResponseBody
     public List<Customer> customersList(){
         return this.customserService.CustomerList();
+    }
+
+    @RequestMapping(value = "/dishs/{id}")
+    @ResponseBody
+    public String dishGet(@PathVariable("id") String mid){
+        System.out.println(mid);
+        return "dishes";
     }
 
     @RequestMapping("/CustomerDelete/{id}")

@@ -13,7 +13,7 @@ import java.io.IOException;
  * Created by ThinkPad on 2019/4/18.
  */
 @Component
-@WebFilter(filterName = "commonFilter",urlPatterns = "/*")
+@WebFilter(filterName = "commonFilter",urlPatterns = "/**")
 public class CommonFilter extends HttpFilter {
 
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException,
@@ -21,6 +21,10 @@ public class CommonFilter extends HttpFilter {
         String requestUri = request.getRequestURI();
         String contextPath = request.getContextPath();
         String uri = requestUri.substring(contextPath.length());
+        if(uri.endsWith(".css")||uri.endsWith(".js")||uri.endsWith(".png")){
+            filterChain.doFilter(request,response);
+            return;
+        }
         if("/login".equals(uri)){
             filterChain.doFilter(request,response);
             return;

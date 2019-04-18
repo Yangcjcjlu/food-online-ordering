@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -48,9 +49,10 @@ public class DishController {
     }
 
     @RequestMapping("/get/{id}")
-    @ResponseBody
-    public Object getDish(@PathVariable("id") int mid){
+    public String getDish(@PathVariable("id") String id){
+        int mid = Integer.parseInt(id);
        List<Dish> DishList = this.dishService.DishList(mid);
-        return Result.success(DishList);
+        return "dishes";
+       //return Result.success(DishList);
     }
 }
