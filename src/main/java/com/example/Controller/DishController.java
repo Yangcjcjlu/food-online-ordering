@@ -49,8 +49,8 @@ public class DishController {
 
     @RequestMapping("/get/{id}")
     @ResponseBody
-    public Object getDish(@PathVariable("id") int id){
-        Dish  dish = dishService.DishGet(id);
-        return Result.success(dish);
+    public Object getDish(@PathVariable("id") int mid){
+       List<Dish> DishList = this.dishService.DishList(mid);
+        return Result.success(DishList);
     }
 }

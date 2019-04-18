@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Are you hungry?</title>
+    <style>
+        div.selectBox{display:none;position:fixed;top:20%;left:50%;width:300px;height:550px;  margin: -100px 0 0 -150px;border:3px solid black;background-color:white;z-index:1002}
+        div.shelter{display:none;position:fixed;top:0px;left:0px;width:100%;height:100%;background-color:black;opacity:0.6;z-index:1001}
+    </style>
+    <script>
+        function oldJump() {
+            location = "new1.aspx";
+        }
+        function showSelectBox() {
+            document.getElementById("selectBox").style.display = "block";
+            document.getElementById("shelter").style.display = "block";
+        }
+        function cancel() {
+            document.getElementById("selectBox").style.display = "none";
+            document.getElementById("shelter").style.display = "none";
+        }
+        function ok() {
+            window.location.href='index.html';
+            /* var radios = document.getElementsByName("new");
+            for(var i=0;i<radios.length;i++)
+            {
+                if(radios[i].checked)
+                {
+                    location = radios[i].value + ".aspx";
+                    return true;
+                }
+            }
+            alert("请选择");
+            return false;*/
+        }
+    </script>
+
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/order.css" rel="stylesheet" type="text/css" media="all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Spicemystery Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+    <script src="js/simpleCart.min.js"> </script>
+</head>
+<body>
+
+
+<!-- header -->
+<div class="head-top">
+
+</div>
+<div class="header">
+
+    <div class="container">
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" class="img-responsive" alt=""></a>
+        </div>
+        <div class="header-left">
+            <div class="head-nav">
+                <span class="menu"> </span>
+                <ul>
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href=" resturants">Resturants</a></li>
+                    <li><a href="login">Personal Information</a></li>
+                    <li><a href=" contact">Contact</a></li>
+                    <div class="clearfix"> </div>
+                </ul>
+                <!-- script-for-nav -->
+                <script>
+                    $( "span.menu" ).click(function() {
+                        $( ".head-nav ul" ).slideToggle(300, function() {
+                            // Animation complete.
+                        });
+                    });
+                </script>
+                <!-- script-for-nav -->
+            </div>
+            <div class="header-right1">
+                <div class="cart box_1">
+                    <a href="checkout">
+                        <h3> <span class="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity" class="simpleCart_quantity">0</span> items)<img src="images/bag.png" alt=""></h3>
+                    </a>
+                    <p><a href="javascript:;" class="simpleCart_empty">empty card</a></p>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<!-- header -->
+<div class="content fl ml10">
+    <div class="order_hd">
+        <table class="orders">
+        <h3>Current order</h3>
+        <thead>
+        <tr>
+            <th width="10%">Order ID</th>
+            <th width="10%">Merchant name</th>
+            <th width="20%">Receiving address</th>
+            <th width="10%">Total amount</th>
+            <th width="10%">Order time</th>
+            <th width="10%">Contact number</th>
+            <th width="10%">Order status</th>
+            <th width="20%">Operation</th>
+        </tr>
+        </thead>
+            <tbody>
+            <tr>
+                <td>123456</td>
+                <td>Juicy</td>
+                <td>CJLU</td>
+                <td>$10.00</td>
+                <td>2019-04-25 12:25:37</td>
+                <td>13579246810</td>
+                <td>Waiting for delivery</td>
+                <td><a href="">Confirm receipt</a> | <a href="">Cancel the order</a></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="order_bd mt10">
+        <h3 style = "h3height: 33px; line-height: 33px;  font-size: 14px; color: #279019; margin-bottom: 1px; font-weight: bold; padding-left: 20px;">Past order</h3>
+        <table class="orders">
+            <thead>
+            <tr>
+                <th width="10%">Order ID</th>
+                <th width="10%">Merchant name</th>
+                <th width="20%">Receiving address</th>
+                <th width="10%">Total amount</th>
+                <th width="20%">Completion time</th>
+                <th width="10%">Order status</th>
+                <th width="20%">Operation</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>123456</td>
+                <td>Juicy</td>
+                <td>CJLU</td>
+                <td>$10.00</td>
+                <td>2019-04-25 12:25:37</td>
+                <td>Completed</td>
+                <td><a href="">Check</a> | <a href="">Delete</a></td>
+            </tr>
+            <tr>
+                <td>123456</td>
+                <td>Juicy</td>
+                <td>CJLU</td>
+                <td>$10.00</td>
+                <td>2019-04-25 12:25:37</td>
+                <td>Completed</td>
+                <td><a href="">Check</a> | <a href="">Delete</a></td>
+            </tr>
+            <tr>
+                <td>123456</td>
+                <td>Juicy</td>
+                <td>CJLU</td>
+                <td>$10.00</td>
+                <td>2019-04-25 12:25:37</td>
+                <td>Completed</td>
+                <td><a href="">Check</a> | <a href="">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- 右侧内容区域 end -->
+
+<!-- footer-->
+<div class="footer">
+    <div class="container">
+        <div class="footer-left">
+            <p>Copyrights © 2018 Are you hungry All rights reserved | Design by <a href="">XH LGY</a></p>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- footer-->
+</body>
+`

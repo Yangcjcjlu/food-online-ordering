@@ -46,7 +46,7 @@
     <select id="DishList" resultMap="DishResult" resultType="com.example.Model.Dish">
         SELECT * from dish d
         WHERE
-           d.data_status =1
+           d.data_status = 1
            <if test="mid!=null and mid!=''">
                and d.m_id=#{mid}
            </if>

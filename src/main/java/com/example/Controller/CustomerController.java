@@ -82,6 +82,13 @@ public class CustomerController {
     }
 
 
+
+    @RequestMapping(value = "/orderItem")
+    public String orderItem() {
+        return "orderItem";
+    }
+
+
     @RequestMapping(value = "/contact")
     public String contact() {
         return "contact";

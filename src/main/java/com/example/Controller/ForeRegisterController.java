@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -52,7 +53,7 @@ public class ForeRegisterController {
 
     @RequestMapping("/foreLogin")
     @ResponseBody
-    public Object login(@RequestParam("name") String name, @RequestParam("password") String password, HttpSession session){
+    public Object login(@RequestParam("name") String name, @RequestParam("password") String password, HttpServletRequest request){
         Customer customer = new Customer();
         customer.setName(name);
         customer.setPassword(password);
@@ -69,7 +70,7 @@ public class ForeRegisterController {
         }
         else{
             String message = "congratulation!";
-            session.setAttribute("user",name);
+            request.getSession().setAttribute("customer",customer1);
             return Result.success(message);
         }
     }
@@ -122,7 +123,7 @@ public class ForeRegisterController {
             message = "Password is InCorrect,please try again";
             return Result.fail(message);
         }
-        session.setAttribute("user",merchant.getName());
+        session.setAttribute("user",merchant);
         return Result.success();
 
     }

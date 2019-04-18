@@ -15,14 +15,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <link th:href='@{http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800}' rel='stylesheet' type='text/css'>
-    <link th:href='@{http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700}' rel='stylesheet' type='text/css'>
+
+    <link th:href='@{http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800}' rel='stylesheet'
+          type='text/css'>
+    <link th:href='@{http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700}' rel='stylesheet'
+          type='text/css'>
     <script th:src="@{js/jquery.min.js}"></script>
-    <link rel="stylesheet" th:href="@{css/flexslider.css}" type="text/css" media="screen"/>
     <script th:src="@{js/simpleCart.min.js}"></script>
+    <script src="js/jquery/2.0.0/jquery.min.js"></script>
+    <script src="vue/2.5.16/vue.min.js"></script>
+    <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+    <script src="js/vue/2.5.16/vue.min.js"></script>
+    <script src="js/axios/0.17.1/axios.min.js"></script>
+    <script src="js/moment/2.22.2/moment.js"></script>
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 <!-- header -->
+<script type="text/javascript">
+    $(function () {
+        var data = {
+            uri: '/restaurant/list',
+            beans: [],
+            dishUri:'/dish/get'
+        };
+
+        var vue = new Vue({
+            el: '#IteratorRestaurant',
+            data: data,
+            mounted: function () {
+                this.load();
+            },
+            methods: {
+                load: function () {
+                    var url = this.uri;
+                    axios.get(url).then(function (response) {
+                        vue.beans = response.data;
+                    })
+                },
+                order:function (id) {
+                    var url = this.dishUri+"/"+id;
+                    axios.get(url).then(function (response) {
+                        console.log(response.data)
+                    })
+                }
+            }
+        })
+    })
+</script>
+
 <div class="head-top">
 
 </div>
@@ -36,10 +78,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="head-nav">
                 <span class="menu"> </span>
                 <ul>
-                    <li><a th:href="@{index}">Home</a></li>
-                    <li class="active"><a th:href="@{ resturants}">Resturants</a></li>
-                    <li><a th:href="@{login}">Sign In</a></li>
-                    <li><a th:href="@{contact}">Contact</a></li>
+                    <li><a href="index">Home</a></li>
+                    <li class="active"><a href=" resturants">Resturants</a></li>
+                    <li><a th:href="login">Sign In</a></li>
+                    <li><a th:href="contact">Contact</a></li>
                     <div class="clearfix"></div>
                 </ul>
                 <!-- script-for-nav -->
@@ -72,95 +114,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- about -->
 <div class="orders">
     <div class="container">
-        <div class="order-top">
-            <li class="im-g"><a href="#"><img th:src="@{images/1p.jpg}" class="img-responsive" alt=""></a></li>
-            <li class="data"><h4>Original Taste</h4>
+        <div class="order-top" id="IteratorRestaurant">
+            <ul  v-for="bean in beans">
+            <li class="im-g" ><a href="#"><img :src="bean.pic" class="img-responsive" alt=""/></a></li>
+            <li class="data"><h4>{{bean.name}}</h4>
                 <p>Details</p>
                 <P> Description</P>
             </li>
             <li class="bt-nn">
-                <a class="morebtn hvr-rectangle-in" href="orders">Explore</a>
+                <a class="morebtn hvr-rectangle-in" @click="order(bean.id)">Explore</a>
             </li>
+
             <div class="clearfix"></div>
+
+            <!--<li class="im-g"><a href="#"/>a</li>-->
+            </ul>
         </div>
-        <div class="order-top">
-            <li class="im-g"><a href="#"><img th:src="@{images/2p.jpg}" class="img-responsive" alt=""></a></li>
-            <li class="data"><h4>Hundred spices</h4>
-                <p>Details</p>
-                <p>Description</p>
-            </li>
-            <li class="bt-nn">
-                <a class="morebtn hvr-rectangle-in" href="orders">Explore</a>
-            </li>
-            <div class="clearfix"></div>
-        </div>
-        <div class="order-top">
-            <li class="im-g"><a href="#"><img src="images/3p.png" class="img-responsive" alt=""></a></li>
-            <li class="data"><h4>QianWei</h4>
-                <p>Details</p>
-                <p>Description</p>
-            </li>
-            <li class="bt-nn">
-                <a class="morebtn hvr-rectangle-in" href="orders">Explore</a>
-            </li>
-            <div class="clearfix"></div>
-        </div>
-        <div class="order-top">
-            <li class="im-g"><a href="#"><img src="images/4p.jpg" class="img-responsive" alt=""></a></li>
-            <li class="data"><h4>Delicacy</h4>
-                <p>Details</p>
-                <p>Description</p>
-            </li>
-            <li class="bt-nn">
-                <a class="morebtn hvr-rectangle-in" href="orders">Explore</a>
-            </li>
-            <div class="clearfix"></div>
-        </div>
-        <div class="order-top">
-            <li class="im-g"><a href="#"><img src="images/5p.jpg" class="img-responsive" alt=""></a></li>
-            <li class="data"><h4>BaiWei</h4>
-                <p>Details</p>
-                <p>Description</p>
-            </li>
-            <li class="bt-nn">
-                <a class="morebtn hvr-rectangle-in" href="orders">Explore</a>
-            </li>
-            <div class="clearfix"></div>
-        </div>
-        <div class="order-top">
-            <li class="im-g"><a href="#"><img src="images/6p.jpg" class="img-responsive" alt=""></a></li>
-            <li class="data"><h4>Fresh Seafood</h4>
-                <p>Details</p>
-                <p>Description</p>
-            </li>
-            <li class="bt-nn">
-                <a class="morebtn hvr-rectangle-in" href="orders">Explore</a>
-            </li>
-            <div class="clearfix"></div>
-        </div>
-        <div class="order-top">
-            <li class="im-g"><a href="#"><img src="images/7p.jpg" class="img-responsive" alt=""></a></li>
-            <li class="data"><h4>Vegetarian Cusine</h4>
-                <p>Details</p>
-                <p>Description</p>
-            </li>
-            <li class="bt-nn">
-                <a class="morebtn hvr-rectangle-in" href="orders">Explore</a>
-            </li>
-            <div class="clearfix"></div>
-        </div>
-        <br/>
-        <div class="order-top">
-            <li class="im-g"><a href="#"><img src="images/8p.jpg" class="img-responsive" alt=""></a></li>
-            <li class="data"><h4>Uncle Sam</h4>
-                <p>Details</p>
-                <p>Description</p>
-            </li>
-            <li class="bt-nn">
-                <a class="morebtn hvr-rectangle-in" href="orders">Explore</a>
-            </li>
-            <div class="clearfix"></div>
-        </div>
+
     </div>
 </div>
 <!-- about -->
