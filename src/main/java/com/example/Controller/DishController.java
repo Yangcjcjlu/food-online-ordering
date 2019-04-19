@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -48,11 +49,20 @@ public class DishController {
         return Result.success();
     }
 
+//    @RequestMapping("/get/{id}")
+//    public String getDish(@PathVariable("id") String id){
+//        int mid = Integer.parseInt(id);
+//       List<Dish> DishList = this.dishService.DishList(mid);
+//        return "dishes";
+//       //return Result.success(DishList);
+//    }
+
     @RequestMapping("/get/{id}")
-    public String getDish(@PathVariable("id") String id){
+    public ModelAndView getDish(@PathVariable("id") String id ){
+        ModelAndView mav = new ModelAndView("dishes");
         int mid = Integer.parseInt(id);
-       List<Dish> DishList = this.dishService.DishList(mid);
-        return "dishes";
-       //return Result.success(DishList);
+        List<Dish> DishList = this.dishService.DishList(mid);
+        mav.addObject("DishList",DishList);
+        return mav;
     }
 }

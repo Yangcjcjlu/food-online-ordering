@@ -3,6 +3,9 @@ server:
 
 
 spring:
+    resources:
+      #配置静态资源路径
+      static-locations: classpath:/static/
     datasource:
           driver-class-name: com.mysql.cj.jdbc.Driver
           #基本属性
@@ -25,6 +28,7 @@ spring:
       view:
        prefix: /
        suffix: .html
+      static-path-pattern: /**
 
 
 
