@@ -33,7 +33,7 @@ public class ForeRegisterController {
     @RequestMapping("/foreRegister")
     @ResponseBody
     public Object register(@RequestParam("name") String name,@RequestParam("email") String email,@RequestParam("password") String password,
-    @RequestParam("telephone") String telephone){
+    @RequestParam("telephone") String telephone,HttpServletRequest request){
        Customer customer = new Customer();
        customer.setTelephone(telephone);
        customer.setName(name);
@@ -45,9 +45,8 @@ public class ForeRegisterController {
             String message = "UserName Is already existed, you need to create another account!!";
             return Result.fail(message);
         }
-
-
         customerService.insertCustomer(customer);
+        request.getSession().setAttribute("customer",customer);
         return Result.success();
     }
 
@@ -69,9 +68,9 @@ public class ForeRegisterController {
             return Result.fail(message);
         }
         else{
-            String message = "congratulation!";
+            String message = "Welcome!";
             request.getSession().setAttribute("customer",customer1);
-            return Result.success(message);
+            return Result.success(message,customer1);
         }
     }
 

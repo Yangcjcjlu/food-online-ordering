@@ -25,11 +25,11 @@ public class CommonFilter extends HttpFilter {
             filterChain.doFilter(request,response);
             return;
         }
-        if("/login".equals(uri)){
+        if("/login".equals(uri)||("/register").equals(uri)){
             filterChain.doFilter(request,response);
             return;
         }
-        else if("/fore/foreLogin".equals(uri)){
+        else if("/fore/foreLogin".equals(uri)||("/fore/foreRegister").equals(uri)||("/fore/login").equals(uri)){
             filterChain.doFilter(request,response);
             return;
         }

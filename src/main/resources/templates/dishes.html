@@ -19,9 +19,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link th:href='@{http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700}' rel='stylesheet' type='text/css'>
     <script th:src="@{{path}/js/jquery.min.js(path=${contextPath})}"></script>
     <script th:src="@{{path}/js/simpleCart.min.js(path=${contextPath})}"></script>
+    <script th:src="@{{path}/js/jquery/2.0.0/jquery.min.js(path=${contextPath})}"></script>
+    <script th:src="@{{path}/vue/2.5.16/vue.min.js(path=${contextPath})}"></script>
+    <script th:src="@{{path}/js/bootstrap/3.3.6/bootstrap.min.js(path=${contextPath})}"></script>
+    <link th:href="@{{path}/css/bootstrap/3.3.6/bootstrap.min.css(path=${contextPath})}" rel="stylesheet">
+    <script th:src="@{{path}/js/vue/2.5.16/vue.min.js(path=${contextPath})}"></script>
+    <script th:src="@{{path}/js/axios/0.17.1/axios.min.js(path=${contextPath})}"></script>
+    <script th:src="@{{path}/js/moment/2.22.2/moment.js(path=${contextPath})}"></script>
+    <link th:href="@{{path}/css/style.css(path=${contextPath})}" rel="stylesheet">
 </head>
 <body>
 <!-- header -->
+<script type="text/javascript">
+    $(function(){
+
+//        $(".buyLink").click(function(){
+//                var url = "forecheckLogin";
+//                axios.get(url).then(function(response){
+//                    if(0==response.data.code){
+//
+//                    }
+//                })
+//        })
+
+        var data ={
+            url: 'dish/get'
+        };
+
+        var vue = new Vue({
+            el:'#dish',
+            data:data,
+            methods:{
+                getDish:function(id){
+                    function () {
+                        
+                    }
+                    var uri = this.url+"/"+id;
+                    axios.get(uri).then(function (response) {
+                        console.log(response);
+                    })
+                }
+            }
+        })
+    })
+</script>
 <div class="head-top">
 
 </div>
@@ -35,10 +76,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="head-nav">
                 <span class="menu"> </span>
                 <ul>
-                    <li><a href="index">Home</a></li>
-                    <li><a href=" resturants">Resturants</a></li>
-                    <li><a href="login">Sign In</a></li>
-                    <li><a href=" contact">Contact</a></li>
+                    <li><a th:href="@{{path}/index(path=${contextPath})}">Home</a></li>
+                    <li><a th:href="@{{path}/resturants(path=${contextPath})}">Resturants</a></li>
+                    <li><a th:href="@{{path}/login(path=${contextPath})}">Sign In</a></li>
+                    <li><a th:href="@{{path}/contact(path=${contextPath})}">Contact</a></li>
                     <div class="clearfix"></div>
                 </ul>
                 <!-- script-for-nav -->
@@ -53,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="header-right1">
                 <div class="cart box_1">
-                    <a href="checkout">
+                    <a th:href="@{{path}/checkout(path=${contextPath})}">
                         <h3><span class="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity"
                                                                                class="simpleCart_quantity">0</span>
                             items)<img th:src="@{{path}/images/bag.png(path=${contextPath})}" alt=""></h3>
@@ -81,14 +122,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!--<P> Chicken Stripse</P>-->
             </li>
             <li class="data">
-                <div class="special-info grid_1 simpleCart_shelfItem">
+                <div class="special-info grid_1 simpleCart_shelfItem" id="dish">
                     <h4>Price</h4>
                     <div class="pre-top" th:each="dish:${DishList}">
                         <div class="pr-left">
                             <div class="item_add"><span class="item_price" th:text="${dish.price}"><h6>ONLY $30.00</h6></span></div>
                         </div>
                         <div class="pr-right">
-                            <div class="item_add"><span class="item_price"><a href="#">Pick</a></span></div>
+                            <div class="item_add">
+                                <span class="item_price">
+                                    <a class="buyLink">
+                                    <button  @click="getDish(dish.id)" value="click">pick</button>
+                                    </a>
+                                </span>
+                            </div>
                         </div>
                         <div class="clearfix"></div>
                     </div>

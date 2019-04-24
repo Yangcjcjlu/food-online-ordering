@@ -17,6 +17,7 @@ public class Result {
         this.data = data;
     }
 
+    public static Result success(String message,Object data){return new Result(SUCCESS_CODE,message,data);}
     public static Result success(){return new Result(SUCCESS_CODE,null,null);}
     public static Result success(String message) {
         return new Result(SUCCESS_CODE,message,null);
