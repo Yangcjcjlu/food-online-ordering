@@ -1,6 +1,9 @@
 package com.example.Controller;
 
+import com.example.Model.Customer;
+import com.example.Model.CustomerDishItem;
 import com.example.Model.Dish;
+import com.example.Service.CustomerDishItemService;
 import com.example.Service.DishService;
 import com.example.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -25,6 +29,8 @@ public class DishController {
     @Autowired
     private DishService dishService;
 
+    @Autowired
+    private CustomerDishItemService customerDishItemService;
 
 
 
@@ -64,5 +70,18 @@ public class DishController {
         List<Dish> DishList = this.dishService.DishList(mid);
         mav.addObject("DishList",DishList);
         return mav;
+    }
+
+
+    @RequestMapping("get/dish/post/{id}")
+    public Object addDish(@PathVariable("id") int id, HttpServletRequest request){
+        Customer customer = (Customer) request.getSession().getAttribute("customer");
+        CustomerDishItem customerDishItem = new CustomerDishItem();
+        customerDishItem.setCid(customer.getId());
+        customerDishItem.setDid(id);
+        customerDishItem.setAmount(1);
+        this.customerDishItemService.insert(customerDishItem);
+        return Result.success();
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.Service;
 
 import com.example.Dao.CustomerDishItemDao;
+import com.example.Model.CustomerDishItem;
 import com.example.Model.DishItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,12 @@ public class CustomerDishItemService implements CustomerDishItemDao {
 
 
     @Override
-    public void insert(DishItem dishItem) {
+    public void insert(CustomerDishItem dishItem) {
         customerDishItemDao.insert(dishItem);
     }
 
     @Override
-    public void update(DishItem dishItem) {
+    public void update(CustomerDishItem dishItem) {
         customerDishItemDao.update(dishItem);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.Dao;
 
+import com.example.Model.CustomerDishItem;
 import com.example.Model.DishItem;
 
 /**
@@ -7,7 +8,7 @@ import com.example.Model.DishItem;
  */
 public interface CustomerDishItemDao {
 
-    void insert(DishItem dishItem);
+    void insert(CustomerDishItem dishItem);
 
-    void update(DishItem dishItem);
+    void update(CustomerDishItem dishItem);
 }
