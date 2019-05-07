@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.Dao.CustomerDishItemMapper.xml" >
+<mapper namespace="com.example.Dao.CustomerDishItemDao" >
 
 
     <resultMap id="CustomerDishItemResult" type="com.example.Model.CustomerDishItem">
@@ -25,7 +25,6 @@
     <insert id="insert" parameterType="com.example.Model.CustomerDishItem">
         <![CDATA[
         INSERT INTO `customer_dish_item` (
-
             `cid`,
             `did`,
             `mid`,

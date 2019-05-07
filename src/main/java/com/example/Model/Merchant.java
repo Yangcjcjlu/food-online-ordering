@@ -17,6 +17,16 @@ public class Merchant {
 
     private String comment;
 
+    private String pic;
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+
     private int status;
 
     public int getId() {

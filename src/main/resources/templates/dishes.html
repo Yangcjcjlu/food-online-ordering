@@ -27,14 +27,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script th:src="@{{path}/js/axios/0.17.1/axios.min.js(path=${contextPath})}"></script>
     <script th:src="@{{path}/js/moment/2.22.2/moment.js(path=${contextPath})}"></script>
     <link th:href="@{{path}/css/style.css(path=${contextPath})}" rel="stylesheet">
+
+    <base href="http:127.0.0.1/"/>
 </head>
 <body>
 <!-- header -->
-<script type="text/javascript">
+<script type="text/javascript" >
+
+
+    function getDish(id) {
+        var id =  id;
+        console.log(id);
+        $.post('/dish/post'+'/'+id,function(){
+            alert('s');
+        })
+    }
+
     $(function(){
+        
+
 
         var data ={
-            url: 'dish/post'
+            url:'/dish/post'
         };
 
         var vue = new Vue({
@@ -42,6 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             data:data,
             methods:{
                 getDish:function(id){
+//                    var uri ='dish/post';
                     var uri = this.url+"/"+id;
                     axios.get(uri).then(function (response) {
                         console.log(response);
@@ -104,10 +119,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h4>Pizzas</h4>
             <li class="data" th:each="dish:${DishList}">
                 <p th:text="${dish.name}"></p>
-                <!--<p>Exotic Combo of Cheese & Basil</p>-->
-                <!--<P> Capsicum, Tomatoes, Onion</P>-->
-                <!--<P> Chicken Tikka & Cheese</P>-->
-                <!--<P> Chicken Stripse</P>-->
             </li>
             <li class="data">
                 <div class="special-info grid_1 simpleCart_shelfItem" id="dish">
@@ -120,7 +131,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="item_add">
                                 <span class="item_price">
                                     <a class="buyLink">
-                                    <button  @click="getDish(dish.id)" value="click">pick</button>
+                                    <button  th:onclick="getDish([[${dish.id}]])" value="click">pick</button>
                                     </a>
                                 </span>
                             </div>

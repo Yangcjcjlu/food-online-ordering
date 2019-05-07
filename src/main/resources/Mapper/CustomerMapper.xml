@@ -10,6 +10,7 @@
         <result property="password" column="c_password"/>
         <result property="telephone" column="c_tel"/>
         <result property="address" column="c_address"/>
+        <result property="pic" column="c_pic"/>
     </resultMap>
 
     <sql id="CustomerJoinMap">

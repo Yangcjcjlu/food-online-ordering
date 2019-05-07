@@ -51,7 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 load: function () {
                     var url = this.uri;
                     axios.get(url).then(function (response) {
-                        vue.beans = response.data;
+                           vue.beans = response.data;
                     })
                 },
                 order:function (id) {
@@ -118,8 +118,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul  v-for="bean in beans">
             <li class="im-g" ><a href="#"><img :src="bean.pic" class="img-responsive" alt=""/></a></li>
             <li class="data"><h4>{{bean.name}}</h4>
-                <p>Details</p>
-                <P> Description</P>
+                <p>{{bean.des}}</p>
             </li>
             <li class="bt-nn">
                 <a class="morebtn hvr-rectangle-in" :href="'dish/get/'+bean.id" >Explore</a>

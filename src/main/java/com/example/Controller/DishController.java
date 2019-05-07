@@ -73,7 +73,7 @@ public class DishController {
     }
 
 
-    @RequestMapping("get/dish/post/{id}")
+    @RequestMapping("post/{id}")
     public Object addDish(@PathVariable("id") int id, HttpServletRequest request){
         Customer customer = (Customer) request.getSession().getAttribute("customer");
         CustomerDishItem customerDishItem = new CustomerDishItem();

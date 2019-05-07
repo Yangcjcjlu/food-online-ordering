@@ -11,6 +11,7 @@
         <result property="password" column="m_password"/>
         <result property="tel" column="m_tel"/>
         <result property="comment" column="m_comment"/>
+        <result property="pic" column="m_pic"/>
     </resultMap>
 
     <sql id="MerchantJoinMap">

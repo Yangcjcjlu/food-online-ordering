@@ -34,6 +34,35 @@
         }
     </script>
 
+    <script type="text/javascript">
+        $(function () {
+            var data={
+                uri:'/order/list',
+                bean:[]
+            };
+
+            var vue = new Vue({
+                el:'#orderList',
+                data:data,
+                mounted:function () {
+                    this.load();
+                },
+                methods:{
+                    load:function(){
+                        var url = this.uri;
+                        axios.get(url,{
+                            params:{
+                                id:1
+                            }
+                            }).then(function (response) {
+                            console.log(response);
+                        })
+                    }
+                }
+            })
+        })
+        </script>
+
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/order.css" rel="stylesheet" type="text/css" media="all" />

@@ -2,7 +2,9 @@ package com.example.Controller;
 
 
 import com.example.Model.Customer;
+import com.example.Model.Merchant;
 import com.example.Service.CustomerService;
+import com.example.Service.MerchantService;
 import com.example.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customserService;
+
+    @Autowired
+    private MerchantService merchantService;
 
     @ResponseBody
     @RequestMapping("/select")
@@ -130,10 +135,19 @@ public class CustomerController {
     @RequestMapping(value = "/customerList")
     public String customerList(){ return  "CustomerList";}
 
+    @RequestMapping(value = "/merchantList")
+    public String merchantList(){ return  "MerchantList";}
+
     @RequestMapping("ListCustomer")
     @ResponseBody
     public List<Customer> customersList(){
         return this.customserService.CustomerList();
+    }
+
+    @RequestMapping("ListMerchant")
+    @ResponseBody
+    public List<Merchant> merchantsList(){
+        return this.merchantService.MerchantList();
     }
 
     @RequestMapping(value = "/dishs/{id}")
