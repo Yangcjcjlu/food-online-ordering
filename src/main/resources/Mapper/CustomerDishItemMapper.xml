@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.Dao.CustomerDishItemMapper.xml" >
+
+
+    <resultMap id="CustomerDishItemResult" type="com.example.Model.CustomerDishItem">
+
+        <result property="id" column="id"/>
+        <result property="cid" column="cid"/>
+        <result property="mid" column="mid"/>
+        <result property="did" column="did"/>
+        <result property="amount" column="amount"/>
+        <association property="merchantVO" resultMap="com.example.Dao.MerchantDao.MerchantResult" columnPrefix="m_"/>
+        <association property="customerVO" resultMap="com.example.Dao.CustomerDao.CustomerResult" columnPrefix="c_"/>
+        <association property="dishVO" resultMap="com.example.Dao.DishDao.DishResult" columnPrefix="d_"/>
+    </resultMap>
+
+    <!--<sql id="CustomerJoinMap">-->
+        <!--,c.c_id as c_id-->
+        <!--,c.c_logname as c_logname-->
+        <!--,c.c_tel as c_tel-->
+        <!--,c.c_address as c_address-->
+    <!--</sql>-->
+
+    <insert id="insert" parameterType="com.example.Model.CustomerDishItem">
+        <![CDATA[
+        INSERT INTO `customer_dish_item` (
+
+            `cid`,
+            `did`,
+            `mid`,
+            `amount`
+        )
+        VALUES(
+
+          #{cid},
+          #{did},
+          #{mid},
+          #{amount}
+        )
+
+    ]]>
+    </insert>
+
+
+
+</mapper>

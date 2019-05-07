@@ -51,9 +51,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             data:data,
             methods:{
                 getDish:function(id){
-                    function () {
-                        
-                    }
                     var uri = this.url+"/"+id;
                     axios.get(uri).then(function (response) {
                         console.log(response);
