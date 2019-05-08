@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Are you hungry?</title>
     <style>
@@ -35,6 +35,19 @@
     <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen"/>
     <script src="js/simpleCart.min.js"></script>
     <script type="text/javascript">
+
+
+
+//        function delete(id){
+//            var confirmDelete = confirm("Confirm to delete");
+//            var id = id;
+//            if(confirmDelete){
+//                $.post('/dishItem/delete'+id,function (data) {
+//                        console.log(data)
+//                })
+//            }
+//        }
+
         $(function () {
             var data = {
                 uri: '/dishItem/list',
@@ -71,6 +84,7 @@
             document.getElementById("shelter").style.display = "none";
         }
         function ok() {
+            $.post()
             window.location.href = 'orderItem';
             /* var radios = document.getElementsByName("new");
              for(var i=0;i<radios.length;i++)
@@ -100,8 +114,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     } </script>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
-
-
 
 </head>
 <body>
@@ -175,16 +187,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!--<img src="images/6p.jpg" class="img-responsive" alt="">-->
                     <!--</div>-->
                     <div class="cart-item-info">
-                        <h3><a href="#"> {{bean.dishVO.name}}</a><span>Pickup time:{{bean.dishVO.createTime}}</span></h3>
+                        <h3><a href="#"> {{bean.dishVO.name}}</a><span>Pickup time:{{bean.createDate}}</span></h3>
+                        <span>Retaurant Name:{{bean.restaurantVO.name}}</span>
                         <ul class="qty">
-                            <li><p>Min. order value:{{bean.dishVO.price}}</p></li>
+                            <li><p>total price:{{bean.dishVO.price}}*{{bean.amount}}</p></li>
                             <li><p>amount:{{bean.amount}}</p></li>
                             <li><p>FREE delivery</p></li>
+                            <div class="delivery">
+                                <span>Delivered in 1-1.30 hours</span>
+                                <div class="clearfix"></div>
+                            </div>
                         </ul>
-                        <div class="delivery">
-                            <span>Delivered in 1-1:30 hours</span>
-                            <div class="clearfix"></div>
-                        </div>
+
                     </div>
                     <div class="clearfix"></div>
 
@@ -193,97 +207,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
 
 
-        <!--<script>$(document).ready(function (c) {-->
-            <!--$('.close1').on('click', function (c) {-->
-                <!--$('.cart-header').fadeOut('slow', function (c) {-->
-                    <!--$('.cart-header').remove();-->
-                <!--});-->
-            <!--});-->
-        <!--});-->
-        <!--</script>-->
-        <!--<div class="cart-header">-->
-            <!--<div class="close1"></div>-->
-            <!--<div class="cart-sec simpleCart_shelfItem">-->
-                <!--<div class="cart-item cyc">-->
-                    <!--<img src="images/6p.jpg" class="img-responsive" alt="">-->
-                <!--</div>-->
-                <!--<div class="cart-item-info">-->
-                    <!--<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>-->
-                    <!--<ul class="qty">-->
-                        <!--<li><p>Min. order value:</p></li>-->
-                        <!--<li><p>FREE delivery</p></li>-->
-                    <!--</ul>-->
-                    <!--<div class="delivery">-->
-                        <!--<p>Service Charges : $10.00</p>-->
-                        <!--<span>Delivered in 1-1:30 hours</span>-->
-                        <!--<div class="clearfix"></div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="clearfix"></div>-->
 
-            <!--</div>-->
-        <!--</div>-->
-        <!--<script>$(document).ready(function (c) {-->
-            <!--$('.close2').on('click', function (c) {-->
-                <!--$('.cart-header2').fadeOut('slow', function (c) {-->
-                    <!--$('.cart-header2').remove();-->
-                <!--});-->
-            <!--});-->
-        <!--});-->
-        <!--</script>-->
-        <!--<div class="cart-header2">-->
-            <!--<div class="close2"></div>-->
-            <!--<div class="cart-sec simpleCart_shelfItem">-->
-                <!--<div class="cart-item cyc">-->
-                    <!--<img src="images/8p.jpg" class="img-responsive" alt="">-->
-                <!--</div>-->
-                <!--<div class="cart-item-info">-->
-                    <!--<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>-->
-                    <!--<ul class="qty">-->
-                        <!--<li><p>Min. order value:</p></li>-->
-                        <!--<li><p>FREE delivery</p></li>-->
-                    <!--</ul>-->
-                    <!--<div class="delivery">-->
-                        <!--<p>Service Charges : $10.00</p>-->
-                        <!--<span>Delivered in 1-1:30 hours</span>-->
-                        <!--<div class="clearfix"></div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="clearfix"></div>-->
-
-            <!--</div>-->
-        <!--</div>-->
-        <!--<script>$(document).ready(function (c) {-->
-            <!--$('.close3').on('click', function (c) {-->
-                <!--$('.cart-header3').fadeOut('slow', function (c) {-->
-                    <!--$('.cart-header3').remove();-->
-                <!--});-->
-            <!--});-->
-        <!--});-->
-        <!--</script>-->
-        <!--<div class="cart-header3">-->
-            <!--<div class="close3"></div>-->
-            <!--<div class="cart-sec simpleCart_shelfItem">-->
-                <!--<div class="cart-item cyc">-->
-                    <!--<img src="images/5p.jpg" class="img-responsive" alt="">-->
-                <!--</div>-->
-                <!--<div class="cart-item-info">-->
-                    <!--<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>-->
-                    <!--<ul class="qty">-->
-                        <!--<li><p>Min. order value:</p></li>-->
-                        <!--<li><p>FREE delivery</p></li>-->
-                    <!--</ul>-->
-                    <!--<div class="delivery">-->
-                        <!--<p>Service Charges : $10.00</p>-->
-                        <!--<span>Delivered in 1-1:30 hours</span>-->
-                        <!--<div class="clearfix"></div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="clearfix"></div>-->
-
-            <!--</div>-->
-
-        <!--</div>-->
 
         <form id="form1" runat="server">
             <li class="bt-nn">

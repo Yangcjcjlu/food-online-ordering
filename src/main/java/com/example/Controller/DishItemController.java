@@ -49,6 +49,13 @@ public class DishItemController {
     }
 
 
+    @RequestMapping("/delete/{id}")
+    @ResponseBody
+    public Object deleteDishItem(HttpServletRequest request,@PathVariable("id")int id){
+        this.customerDishItemService.delete(id);
+        return Result.success();
+    }
+
 
 
 

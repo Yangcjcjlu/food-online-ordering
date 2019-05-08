@@ -27,6 +27,16 @@ public class CustomerDishItem {
 
     private Date modifiedDate;
 
+    private Restaurant restaurantVO;
+
+    public Restaurant getRestaurantVO() {
+        return restaurantVO;
+    }
+
+    public void setRestaurantVO(Restaurant restaurantVO) {
+        this.restaurantVO = restaurantVO;
+    }
+
     public Date getModifiedDate() {
         return modifiedDate;
     }

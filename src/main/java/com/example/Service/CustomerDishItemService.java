@@ -40,4 +40,9 @@ public class CustomerDishItemService implements CustomerDishItemDao {
     public void update(CustomerDishItem dishItem) {
         customerDishItemDao.update(dishItem);
     }
+
+    @Override
+    public void delete(int id){
+        customerDishItemDao.delete(id);
+    }
 }

@@ -14,6 +14,7 @@
         <association property="merchantVO" resultMap="com.example.Dao.MerchantDao.MerchantResult" columnPrefix="m_"/>
         <association property="customerVO" resultMap="com.example.Dao.CustomerDao.CustomerResult" columnPrefix="c_"/>
         <association property="dishVO" resultMap="com.example.Dao.DishDao.DishResult" columnPrefix="d_"/>
+        <association property="restaurantVO" resultMap="com.example.Dao.RestaurantDao.RestaurantResult" column="r_"/>
     </resultMap>
 
 
@@ -43,9 +44,11 @@
         SELECT
         *
         <include refid="com.example.Dao.DishDao.DishJoinMap"/>
+        <include refid="com.example.Dao.RestaurantDao.RestaurantJoinMap"/>
         FROM
         `customer_dish_item` cdi
         left join dish as d on d.d_id = cdi.did
+        left join  restaurant as r on r.id = cdi.mid
         <where>
             <if test="id!=null">
                 cdi.cid = #{id}
@@ -87,6 +90,14 @@
             cdi.modifiedDate = #{modifiedDate}
         </trim>
     </update>
+
+    <delete id="delete" >
+        DELETE customer_dish_item cdi
+           where
+           <if test="id!=null">
+              cdi.id = #{id}
+           </if>
+    </delete>
 
 
 </mapper>

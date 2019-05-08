@@ -11,6 +11,12 @@
         <result property="des" column="des"/>
     </resultMap>
 
+    <sql id="RestaurantJoinMap">
+        ,r.id as r_id
+        ,r.name as r_name
+        ,r.pic as r_pic
+        ,r.des as r_des
+    </sql>
 
     <select id="RestaurantList" resultMap="RestaurantResult" resultType="com.example.Model.Restaurant">
         SELECT * from restaurant r

@@ -18,4 +18,6 @@ public interface CustomerDishItemDao {
     List<DishItem> list(@Param("id") int id);
 
     CustomerDishItem select(@Param("mid") int mid,@Param("cid") int cid,@Param("did")int did);
+
+    void delete(@Param("id")int id);
 }
