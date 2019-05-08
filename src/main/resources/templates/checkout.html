@@ -68,6 +68,18 @@
                             vue.beans = response.data;
                         })
                     },
+                    ok:function () {
+
+//                        axios({
+//                            method:'post',
+//                            url:'/order/post',
+//
+//                        })
+
+//                        axios.post("/order/post",vue.beans).then(function (response) {
+//                            console.log(response)
+//                        })
+                    }
                 }
             })
         })
@@ -84,19 +96,20 @@
             document.getElementById("shelter").style.display = "none";
         }
         function ok() {
-            $.post()
+//            var orderItem;
+//            orderItem = '<%=request.getAttribute()%>'
             window.location.href = 'orderItem';
-            /* var radios = document.getElementsByName("new");
-             for(var i=0;i<radios.length;i++)
-             {
-             if(radios[i].checked)
-             {
-             location = radios[i].value + ".aspx";
-             return true;
-             }
-             }
-             alert("请选择");
-             return false;*/
+//            /* var radios = document.getElementsByName("new");
+//             for(var i=0;i<radios.length;i++)
+//             {
+//             if(radios[i].checked)
+//             {
+//             location = radios[i].value + ".aspx";
+//             return true;
+//             }
+//             }
+//             alert("请选择");
+//             return false;*/
         }
     </script>
 
@@ -183,9 +196,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div v-for="bean in beans">
                 <div class="close"></div>
                 <div class="cart-sec simpleCart_shelfItem">
-                    <!--<div class="cart-item cyc">-->
-                    <!--<img src="images/6p.jpg" class="img-responsive" alt="">-->
-                    <!--</div>-->
                     <div class="cart-item-info">
                         <h3><a href="#"> {{bean.dishVO.name}}</a><span>Pickup time:{{bean.createDate}}</span></h3>
                         <span>Retaurant Name:{{bean.restaurantVO.name}}</span>
@@ -193,20 +203,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li><p>total price:{{bean.dishVO.price}}*{{bean.amount}}</p></li>
                             <li><p>amount:{{bean.amount}}</p></li>
                             <li><p>FREE delivery</p></li>
-                            <div class="delivery">
-                                <span>Delivered in 1-1.30 hours</span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </ul>
 
+                        </ul>
+                        <div class="delivery">
+                            <span>Delivered in 1-1.30 hours</span>
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
                     <div class="clearfix"></div>
-
+                </div>
                 </div>
             </div>
-        </div>
-
-
 
 
         <form id="form1" runat="server">
