@@ -17,11 +17,15 @@
     </resultMap>
 
     <sql id="DishJoinMap">
-        ,d.d_id as d_id
-        ,d.d_name as d_name
-        ,d.d_pic as d_pic
-        ,d.d_status as d_status
-        ,d.d_des as d_des
+        ,d.d_id as d_d_id
+        ,d.d_name as d_d_name
+        ,d.d_status as d_d_status
+        ,d.d_sales_count as d_d_sales_count
+        ,d.d_des as d_d_des
+        ,d.d_price as d_d_price
+        ,d.create_time as d_create_time
+        ,d.m_id as d_m_id
+        ,d.cid as d_cid
     </sql>
 
 

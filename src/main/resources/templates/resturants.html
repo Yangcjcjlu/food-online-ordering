@@ -51,6 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 load: function () {
                     var url = this.uri;
                     axios.get(url).then(function (response) {
+                        console.log(response)
                            vue.beans = response.data;
                     })
                 },

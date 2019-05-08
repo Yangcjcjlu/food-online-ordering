@@ -10,17 +10,13 @@
         <result property="mid" column="mid"/>
         <result property="did" column="did"/>
         <result property="amount" column="amount"/>
+        <result property="createDate" column="createDate"/>
         <association property="merchantVO" resultMap="com.example.Dao.MerchantDao.MerchantResult" columnPrefix="m_"/>
         <association property="customerVO" resultMap="com.example.Dao.CustomerDao.CustomerResult" columnPrefix="c_"/>
         <association property="dishVO" resultMap="com.example.Dao.DishDao.DishResult" columnPrefix="d_"/>
     </resultMap>
 
-    <!--<sql id="CustomerJoinMap">-->
-        <!--,c.c_id as c_id-->
-        <!--,c.c_logname as c_logname-->
-        <!--,c.c_tel as c_tel-->
-        <!--,c.c_address as c_address-->
-    <!--</sql>-->
+
 
     <insert id="insert" parameterType="com.example.Model.CustomerDishItem">
         <![CDATA[
@@ -28,19 +24,69 @@
             `cid`,
             `did`,
             `mid`,
-            `amount`
+            `amount`,
+            `createDate`
         )
         VALUES(
 
           #{cid},
           #{did},
           #{mid},
-          #{amount}
+          #{amount},
+          #{createDate}
         )
 
     ]]>
     </insert>
 
+    <select id="list" resultMap="CustomerDishItemResult" resultType="com.example.Model.CustomerDishItem">
+        SELECT
+        *
+        <include refid="com.example.Dao.DishDao.DishJoinMap"/>
+        FROM
+        `customer_dish_item` cdi
+        left join dish as d on d.d_id = cdi.did
+        <where>
+            <if test="id!=null">
+                cdi.cid = #{id}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="select" resultMap="CustomerDishItemResult" resultType="com.example.Model.CustomerDishItem">
+        SELECT
+        *
+        FROM
+        `customer_dish_item` cdi
+        <where>
+
+            <if test="mid!=null">
+             cdi.mid = #{mid}
+            </if>
+            <if test="cid!=null">
+                and cdi.cid = #{cid}
+            </if>
+            <if test="did!=null">
+                and cdi.did = #{did}
+            </if>
+        </where>
+    </select>
+
+
+    <update id="update" parameterType="com.example.Model.CustomerDishItem">
+        UPDATE customer_dish_item cdi
+        set
+        <trim suffixOverrides=",">
+            <if test="id!=null and id!=''">cdi.id = #{id},</if>
+            <if test="cid!=null and cid!=''">cdi.cid = #{cid},</if>
+            <if test="did!=null and did!=''">cdi.did = #{did},</if>
+            <if test="mid!=null and mid!=''">cdi.mid = #{mid},</if>
+            <if test="amount!=null and amount!=''">cdi.amount = #{amount},</if>
+            cdi.createDate = #{createDate},
+            cdi.modifiedDate = #{modifiedDate}
+        </trim>
+    </update>
 
 
 </mapper>

@@ -1,5 +1,7 @@
 package com.example.Model;
 
+import java.util.Date;
+
 /**
  * Created by ThinkPad on 2019/4/29.
  */
@@ -14,6 +16,56 @@ public class CustomerDishItem {
     private int mid;
 
     private int amount;
+
+    private Merchant merchantVO;
+
+    private Customer customerVO;
+
+    private Dish dishVO;
+
+    private Date createDate;
+
+    private Date modifiedDate;
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Merchant getMerchantVO() {
+        return merchantVO;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public void setMerchantVO(Merchant merchantVO) {
+        this.merchantVO = merchantVO;
+    }
+
+    public Customer getCustomerVO() {
+        return customerVO;
+    }
+
+    public void setCustomerVO(Customer customerVO) {
+        this.customerVO = customerVO;
+    }
+
+    public Dish getDishVO() {
+        return dishVO;
+    }
+
+    public void setDishVO(Dish dishVO) {
+        this.dishVO = dishVO;
+    }
 
     public int getId() {
         return id;

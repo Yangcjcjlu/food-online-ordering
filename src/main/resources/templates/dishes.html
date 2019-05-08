@@ -15,8 +15,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <link th:href='@{http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800}' rel='stylesheet' type='text/css'>
-    <link th:href='@{http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700}' rel='stylesheet' type='text/css'>
+    <link th:href='@{http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800}' rel='stylesheet'
+          type='text/css'>
+    <link th:href='@{http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700}' rel='stylesheet'
+          type='text/css'>
     <script th:src="@{{path}/js/jquery.min.js(path=${contextPath})}"></script>
     <script th:src="@{{path}/js/simpleCart.min.js(path=${contextPath})}"></script>
     <script th:src="@{{path}/js/jquery/2.0.0/jquery.min.js(path=${contextPath})}"></script>
@@ -32,32 +34,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!-- header -->
-<script type="text/javascript" >
+<script type="text/javascript">
 
 
-    function getDish(id) {
-        var id =  id;
-        console.log(id);
-        $.post('/dish/post'+'/'+id,function(){
+    function getDish(id,mid) {
+        var id = id;
+        var mid = mid;
+        $.post('/dish/post' + '/' + id+"/"+mid, function () {
             alert('s');
         })
     }
 
-    $(function(){
-        
+    $(function () {
 
 
-        var data ={
-            url:'/dish/post'
+        var data = {
+            url: '/dish/post'
         };
 
         var vue = new Vue({
-            el:'#dish',
-            data:data,
-            methods:{
-                getDish:function(id){
+            el: '#dish',
+            data: data,
+            methods: {
+                getDish: function (id,mid) {
 //                    var uri ='dish/post';
-                    var uri = this.url+"/"+id;
+                    var uri = this.url + "/" + id+"/"+mid;
                     axios.get(uri).then(function (response) {
                         console.log(response);
                     })
@@ -125,13 +126,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h4>Price</h4>
                     <div class="pre-top" th:each="dish:${DishList}">
                         <div class="pr-left">
-                            <div class="item_add"><span class="item_price" th:text="${dish.price}"><h6>ONLY $30.00</h6></span></div>
+                            <div class="item_add"><span class="item_price" th:text="${dish.price}"><h6>ONLY $30.00</h6></span>
+                            </div>
                         </div>
                         <div class="pr-right">
                             <div class="item_add">
                                 <span class="item_price">
                                     <a class="buyLink">
-                                    <button  th:onclick="getDish([[${dish.id}]])" value="click">pick</button>
+                                    <button th:onclick="getDish([[${dish.id}]],[[${dish.mid}]])" value="click">pick</button>
                                     </a>
                                 </span>
                             </div>
