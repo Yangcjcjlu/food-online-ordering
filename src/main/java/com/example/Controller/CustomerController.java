@@ -104,6 +104,12 @@ public class CustomerController {
         return "Merchant register";
     }
 
+    @RequestMapping(value = "/adminLogin")
+    public String AdminLogin() {
+        return "AdminLogin";
+    }
+
+
     @RequestMapping(value = "/orders")
     public String orders() {
         return "orders";
@@ -132,7 +138,7 @@ public class CustomerController {
         return "Userinformation";
     }
 
-    @RequestMapping(value = "/customerList")
+    @RequestMapping(value = "/CustomerList")
     public String customerList(){ return  "CustomerList";}
 
     @RequestMapping(value = "/merchantList")

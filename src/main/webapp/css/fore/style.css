@@ -236,12 +236,18 @@ div.homepageDiv{
 	position:relative;
 }
 
+a.merchantLogin{
+	margin: 100px;
+}
+
 
 img.catear {
 	position: absolute;
 	height: 15px;
 	display: none;
 }
+
+
 
 img.logo {
 	position: absolute;

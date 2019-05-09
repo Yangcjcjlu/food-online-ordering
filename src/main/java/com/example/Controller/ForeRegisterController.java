@@ -1,9 +1,12 @@
 package com.example.Controller;
 
+import com.example.Dao.AdministratorDao;
 import com.example.Dao.MerchantDao;
+import com.example.Model.Administrator;
 import com.example.Model.Customer;
 import com.example.Model.Dish;
 import com.example.Model.Merchant;
+import com.example.Service.AdministratorService;
 import com.example.Service.CustomerService;
 import com.example.Service.DishService;
 import com.example.Service.MerchantService;
@@ -30,15 +33,37 @@ public class ForeRegisterController {
     @Autowired
     DishService dishService;
 
+    @Autowired
+    AdministratorService administratorService;
+
+    @RequestMapping("/AdministratorRegister")
+    @ResponseBody
+    public Object register(@RequestParam("name") String name,@RequestParam("password") String password,
+    @RequestParam("tel") String tel,HttpServletRequest request){
+       Administrator administrator = new Administrator();
+       administrator.setTel(tel);
+       administrator.setName(name);
+       administrator.setPassword(password);
+        boolean isExist =administratorService.isExist(name);
+
+        if(isExist){
+            String message = "UserName Is already existed, you need to create another account!!";
+            return Result.fail(message);
+        }
+        administratorService.insert(administrator);
+        request.getSession().setAttribute("administrator",administrator);
+        return Result.success();
+    }
+
     @RequestMapping("/foreRegister")
     @ResponseBody
     public Object register(@RequestParam("name") String name,@RequestParam("email") String email,@RequestParam("password") String password,
-    @RequestParam("telephone") String telephone,HttpServletRequest request){
-       Customer customer = new Customer();
-       customer.setTelephone(telephone);
-       customer.setName(name);
-       customer.setPassword(password);
-       customer.setAddress(email);
+                           @RequestParam("telephone") String telephone,HttpServletRequest request){
+        Customer customer = new Customer();
+        customer.setTelephone(telephone);
+        customer.setName(name);
+        customer.setPassword(password);
+        customer.setAddress(email);
         boolean isExist = customerService.isExist(name);
 
         if(isExist){
@@ -46,6 +71,7 @@ public class ForeRegisterController {
             return Result.fail(message);
         }
         customerService.insertCustomer(customer);
+        customer = customerService.get(customer.getName());
         request.getSession().setAttribute("customer",customer);
         return Result.success();
     }
