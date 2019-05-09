@@ -25,7 +25,7 @@ public class CommonFilter extends HttpFilter {
             filterChain.doFilter(request,response);
             return;
         }
-        if("/login".equals(uri)||("/register").equals(uri)){
+        if("/login".equals(uri)||("/register").equals(uri)||("/index").equals(uri)){
             filterChain.doFilter(request,response);
             return;
         }
